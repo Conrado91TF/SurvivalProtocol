@@ -2,9 +2,13 @@ using UnityEngine;
 
 public class MovementStateManager : MonoBehaviour
 {
-    public float walkSpeed = 3f;
-    [SerializeField] public Vector3 dir;
-    float hzinpunt, vInpunt;
+    public float currentMoveSpeed;
+    public float walkSpeed = 3, walkBackSpeed = 2;
+    public float runSpeed = 7, runBackSpeed = 5;
+    public float crouchSpeed = 2, crouchBackSpeed = 5;
+
+    [HideInInspector] public Vector3 dir;
+    [HideInInspector] public float hzInput, vInput;
     CharacterController controller;
 
     [SerializeField] float groundYOffset;
@@ -14,11 +18,21 @@ public class MovementStateManager : MonoBehaviour
     [SerializeField] float gravity = -9.81f;
     Vector3 velocity;
 
+    [HideInInspector] public Animator anim;
+
+    MovementBaseState currentState;
+
+    public  IdleState Idle = new IdleState();
+    public  WalkState Walk = new WalkState();
+    public CrouchState Crouch = new CrouchState();
+    public RunState Run = new RunState();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
        controller = GetComponent<CharacterController>();
+       anim = GetComponentInChildren<Animator>();
+       SwitchState(Idle);
     }
 
     // Update is called once per frame
@@ -26,15 +40,26 @@ public class MovementStateManager : MonoBehaviour
     {
         GetDirectioAndMove();
         Gravity();
+        currentState.UpdateState(this);
+
+        anim.SetFloat("hzInput", hzInput);
+        anim.SetFloat("vInput", vInput);
+
+    }
+    public void SwitchState(MovementBaseState state)
+    {
+        currentState = state;
+        currentState.EnterState(this);
+        
     }
     void GetDirectioAndMove()
     { 
-      hzinpunt = Input.GetAxis("Horizontal");
-      vInpunt = Input.GetAxis("Vertical");
+      hzInput = Input.GetAxis("Horizontal");
+      vInput = Input.GetAxis("Vertical");
 
-      dir = transform.forward * vInpunt + transform.right * hzinpunt;
+      dir = transform.forward * vInput + transform.right * hzInput;
 
-      controller.Move(dir * walkSpeed * Time.deltaTime);
+      controller.Move(dir.normalized * currentMoveSpeed * Time.deltaTime);
     }
     
     bool IsGrounded()
