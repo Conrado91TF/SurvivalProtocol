@@ -4,10 +4,20 @@ using Unity.Cinemachine;
 
 public class AimStateManager : MonoBehaviour
 {
-    [SerializeField] float mouseSense = 1;
-    float xAxis, yAxis;
-    [SerializeField] Transform camFollowPos;
+    AimBaseState currentState;
+    public HipFireState Hip = new HipFireState();
+    public AimState Aim = new AimState();
 
+    [SerializeField] float mouseSense = 1;
+    [SerializeField] Transform camFollowPos;
+    float xAxis, yAxis;
+
+    [HideInInspector] public Animator anim;
+    void Start()
+    {
+        anim = GetComponentInChildren<Animator>();
+        SwitchState(Hip);
+    }
     void Update()
     {
         // Actualizamos los valores de los ejes con la entrada del ratón
@@ -16,6 +26,7 @@ public class AimStateManager : MonoBehaviour
         // Limitamos la rotación vertical para que no dé la vuelta completa
         yAxis = Mathf.Clamp(yAxis, -80, 80);
 
+        currentState.UpdateState(this);
     }
 
     private void LateUpdate()
@@ -26,4 +37,10 @@ public class AimStateManager : MonoBehaviour
         // Aplicamos la rotación horizontal al jugador (para que gire con la cámara)
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, xAxis, transform.eulerAngles.z);
     }
+    public void SwitchState(AimBaseState state)
+    {
+        currentState = state;
+        currentState.EnterState(this);
+    }
+
 }

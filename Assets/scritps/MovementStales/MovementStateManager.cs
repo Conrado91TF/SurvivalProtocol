@@ -65,15 +65,22 @@ public class MovementStateManager : MonoBehaviour
     bool IsGrounded()
     {
         spherePos = new Vector3(transform.position.x, transform.position.y - groundYOffset, transform.position.z);
-        if (Physics.CheckSphere(spherePos, controller.radius -0.05f, groundMask)) return true;
+        if (Physics.CheckSphere(spherePos, controller.radius -0.5f, groundMask)) return true;
         return false;
     }
     void Gravity()
     {
-        if (IsGrounded()) velocity.y += gravity * Time.deltaTime;
-        else if (velocity.y < 0) velocity.y = -2;
+       if (IsGrounded() && velocity.y < 0)
+       {
+          velocity.y = -4f; // Mantener pegado al suelo sin acumular fuerza
+       }
+       else
+       {
+          velocity.y += gravity * Time.deltaTime; // Aplicar gravedad solo en el aire
+       }
 
         controller.Move(velocity * Time.deltaTime);
+        
     }
     private void OnDrawGizmos()
     {
