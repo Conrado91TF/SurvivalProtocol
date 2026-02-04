@@ -13,8 +13,18 @@ public class AimStateManager : MonoBehaviour
     float xAxis, yAxis;
 
     [HideInInspector] public Animator anim;
+    [HideInInspector] public CinemachineCamera vCam;
+    public float adsFov = 40;
+    [HideInInspector] public float hipFov;
+    [HideInInspector] public float currentFov;
+    public float fovTransitionSpeed = 10;
+
+
     void Start()
     {
+        vCam = GetComponentInChildren<CinemachineCamera>();
+            hipFov = vCam.Lens.FieldOfView;
+            currentFov = hipFov;
         anim = GetComponentInChildren<Animator>();
         SwitchState(Hip);
     }
@@ -26,6 +36,7 @@ public class AimStateManager : MonoBehaviour
         // Limitamos la rotación vertical para que no dé la vuelta completa
         yAxis = Mathf.Clamp(yAxis, -80, 80);
 
+        vCam.Lens.FieldOfView = Mathf.Lerp(vCam.Lens.FieldOfView, currentFov, fovTransitionSpeed * Time.deltaTime);
         currentState.UpdateState(this);
     }
 

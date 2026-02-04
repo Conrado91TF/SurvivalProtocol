@@ -638,6 +638,11 @@ MonoBehaviour:
   mouseSense: 1
   camFollowPos: {fileID: 36980230}
   anim: {fileID: 0}
+  vCam: {fileID: 0}
+  adsFov: 40
+  hipFov: 0
+  currentFov: 0
+  fovTransitionSpeed: 10
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
