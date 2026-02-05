@@ -19,13 +19,17 @@ public class AimStateManager : MonoBehaviour
     [HideInInspector] public float currentFov;
     public float fovTransitionSpeed = 10;
 
+    [SerializeField] Transform aimPos;
+    [SerializeField] float aimSoothSpeed = 20;
+    [SerializeField] LayerMask aimMask;
+
 
     void Start()
     {
         vCam = GetComponentInChildren<CinemachineCamera>();
             hipFov = vCam.Lens.FieldOfView;
             currentFov = hipFov;
-        anim = GetComponentInChildren<Animator>();
+        anim = GetComponent<Animator>();
         SwitchState(Hip);
     }
     void Update()
@@ -37,6 +41,13 @@ public class AimStateManager : MonoBehaviour
         yAxis = Mathf.Clamp(yAxis, -80, 80);
 
         vCam.Lens.FieldOfView = Mathf.Lerp(vCam.Lens.FieldOfView, currentFov, fovTransitionSpeed * Time.deltaTime);
+
+        Vector2 screenCenter = new Vector2(Screen.width / 2, Screen.height / 2);
+        Ray ray = Camera.main.ScreenPointToRay(screenCenter);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, aimMask))
+            aimPos.position = Vector3.Lerp(aimPos.position,hit.point, aimSoothSpeed * Time.deltaTime);
+        
         currentState.UpdateState(this);
     }
 
