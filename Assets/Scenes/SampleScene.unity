@@ -954,6 +954,7 @@ MonoBehaviour:
   currentFov: 0
   fovTransitionSpeed: 10
   aimPos: {fileID: 1714144873}
+  actulAimPos: {x: 0, y: 0, z: 0}
   aimSoothSpeed: 20
   aimMask:
     serializedVersion: 2
@@ -1554,6 +1555,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1852576806011754973}
   m_LocalEulerAnglesHint: {x: 28.921, y: 228.378, z: 22.062}
+--- !u!1 &828375963
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 828375964}
+  m_Layer: 6
+  m_Name: BarelPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &828375964
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828375963}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0012, y: 0.042, z: 0.7138}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5404987184770388357}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -2669,7 +2701,7 @@ GameObject:
   - component: {fileID: 8495485482095477909}
   - component: {fileID: 3009772362709468167}
   - component: {fileID: 1769921581640518468}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShotGun_B_Sight_Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2719,7 +2751,7 @@ GameObject:
   - component: {fileID: 7373022490717710490}
   - component: {fileID: 3824445759230175694}
   - component: {fileID: 7942865176012439548}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShotGun_B_Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2890,7 +2922,7 @@ GameObject:
   - component: {fileID: 2741861391289493227}
   - component: {fileID: 2350262885540011977}
   - component: {fileID: 1782215449576151174}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShotGun_B_Stock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3155,7 +3187,7 @@ GameObject:
   - component: {fileID: 3314128508760069933}
   - component: {fileID: 3395069652897558091}
   - component: {fileID: 3817375273544124368}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShotGun_B_Mag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3244,7 +3276,7 @@ GameObject:
   - component: {fileID: 8372396271639452857}
   - component: {fileID: 2874865506368798983}
   - component: {fileID: 8244324234654467152}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShotGun_B_BarrelGuard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3509,7 +3541,7 @@ GameObject:
   - component: {fileID: 5247302884682797630}
   - component: {fileID: 8172129841096666017}
   - component: {fileID: 7944661236163433469}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShotGun_B_Rail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3591,7 +3623,7 @@ GameObject:
   - component: {fileID: 3139694010171017673}
   - component: {fileID: 5583005489618376614}
   - component: {fileID: 6812874472056125927}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShotGun_B_Sight_Forward
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3863,7 +3895,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5404987184770388357}
-  m_Layer: 0
+  - component: {fileID: 5404987184770388358}
+  - component: {fileID: 5404987184770388359}
+  m_Layer: 6
   m_Name: ShotGun_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4041,6 +4075,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 828375964}
   - {fileID: 5282570461373338528}
   - {fileID: 8372396271639452857}
   - {fileID: 3314128508760069933}
@@ -4052,6 +4087,123 @@ Transform:
   - {fileID: 7373022490717710490}
   m_Father: {fileID: 1852576806011754973}
   m_LocalEulerAnglesHint: {x: -90, y: 90, z: 0}
+--- !u!114 &5404987184770388358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4632391581997419327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b7383fc912d53d4fb998db0bd27efae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  fireRate: 0.12
+  semiAuto: 1
+  bullet: {fileID: 4808923748532060907, guid: d8896c2973b3f6c4ab21b5fab9134d35, type: 3}
+  barrelPos: {fileID: 828375964}
+  bulletVelocity: 100
+  bulletsPerShot: 6
+  spreadAmount: 0.1
+  gusShot: {fileID: 8300000, guid: 72d71888336efae49a8271480a3fe548, type: 3}
+--- !u!82 &5404987184770388359
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4632391581997419327}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &5423976339516535939
 GameObject:
   m_ObjectHideFlags: 0
@@ -4879,6 +5031,111 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2916570861751087293}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &8070770936873277871
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 428921691533749105, guid: d8896c2973b3f6c4ab21b5fab9134d35, type: 3}
+      propertyPath: m_Time
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 428921691533749105, guid: d8896c2973b3f6c4ab21b5fab9134d35, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 428921691533749105, guid: d8896c2973b3f6c4ab21b5fab9134d35, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: db435069ec5815346949fc8629494384, type: 2}
+    - target: {fileID: 428921691533749105, guid: d8896c2973b3f6c4ab21b5fab9134d35, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 0.990566
+      objectReference: {fileID: 0}
+    - target: {fileID: 428921691533749105, guid: d8896c2973b3f6c4ab21b5fab9134d35, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 0.990566
+      objectReference: {fileID: 0}
+    - target: {fileID: 428921691533749105, guid: d8896c2973b3f6c4ab21b5fab9134d35, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.r
+      value: 0.990566
+      objectReference: {fileID: 0}
+    - target: {fileID: 428921691533749105, guid: d8896c2973b3f6c4ab21b5fab9134d35, type: 3}
+      propertyPath: m_Parameters.colorGradient.m_ColorSpace
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 428921691533749105, guid: d8896c2973b3f6c4ab21b5fab9134d35, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
+      value: 0.0011805119
+      objectReference: {fileID: 0}
+    - target: {fileID: 428921691533749105, guid: d8896c2973b3f6c4ab21b5fab9134d35, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.04701701
+      objectReference: {fileID: 0}
+    - target: {fileID: 1984552738571889165, guid: d8896c2973b3f6c4ab21b5fab9134d35, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2187311728376554252, guid: d8896c2973b3f6c4ab21b5fab9134d35, type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2589584960474960434, guid: d8896c2973b3f6c4ab21b5fab9134d35, type: 3}
+      propertyPath: timeToDestroy
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4808923748532060907, guid: d8896c2973b3f6c4ab21b5fab9134d35, type: 3}
+      propertyPath: m_Name
+      value: Bullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 6796757600386578626, guid: d8896c2973b3f6c4ab21b5fab9134d35, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.701
+      objectReference: {fileID: 0}
+    - target: {fileID: 6796757600386578626, guid: d8896c2973b3f6c4ab21b5fab9134d35, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.649
+      objectReference: {fileID: 0}
+    - target: {fileID: 6796757600386578626, guid: d8896c2973b3f6c4ab21b5fab9134d35, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6796757600386578626, guid: d8896c2973b3f6c4ab21b5fab9134d35, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6796757600386578626, guid: d8896c2973b3f6c4ab21b5fab9134d35, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6796757600386578626, guid: d8896c2973b3f6c4ab21b5fab9134d35, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6796757600386578626, guid: d8896c2973b3f6c4ab21b5fab9134d35, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6796757600386578626, guid: d8896c2973b3f6c4ab21b5fab9134d35, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6796757600386578626, guid: d8896c2973b3f6c4ab21b5fab9134d35, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6796757600386578626, guid: d8896c2973b3f6c4ab21b5fab9134d35, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d8896c2973b3f6c4ab21b5fab9134d35, type: 3}
 --- !u!4 &8153021304334672051
 Transform:
   m_ObjectHideFlags: 0
@@ -5261,7 +5518,7 @@ GameObject:
   - component: {fileID: 6549817447839284474}
   - component: {fileID: 3253844742043713543}
   - component: {fileID: 1143852784864141486}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShotGun_B_Receiver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5359,7 +5616,7 @@ GameObject:
   - component: {fileID: 5282570461373338528}
   - component: {fileID: 4109358213276739405}
   - component: {fileID: 3008232031779783859}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShotGun_B_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5411,3 +5668,4 @@ SceneRoots:
   - {fileID: 246516230}
   - {fileID: 1714144873}
   - {fileID: 15361293}
+  - {fileID: 8070770936873277871}
