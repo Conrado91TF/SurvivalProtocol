@@ -5,7 +5,7 @@ public class WeaponManager : MonoBehaviour
     [Header("Fire Rate")]
     [SerializeField] float fireRate;
     [SerializeField] bool semiAuto;
-    float fireRateTimer;
+    float fireRateTimer = 0.5f;
 
     [Header("Bullet Properties")]
     [SerializeField] GameObject bullet;
@@ -17,6 +17,12 @@ public class WeaponManager : MonoBehaviour
 
     [SerializeField] AudioClip gusShot;
     AudioSource audioSource;
+    
+    Light muzzleflashLight;
+    ParticleSystem muzzleflashParticles;
+    float lightIntensity;
+    [SerializeField] float lightReturnSpeed = 20;
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -24,6 +30,10 @@ public class WeaponManager : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         aim = GetComponentInParent<AimStateManager>();
+        muzzleflashLight = GetComponentInChildren<Light>();
+        lightIntensity = muzzleflashLight.intensity;
+        muzzleflashLight.intensity = 0;
+        muzzleflashParticles = GetComponentInChildren<ParticleSystem>();
         fireRateTimer = fireRate;
     }
 
@@ -31,6 +41,8 @@ public class WeaponManager : MonoBehaviour
     void Update()
     {
         if (ShouldFire()) Fire();
+        muzzleflashLight.intensity = Mathf.Lerp(muzzleflashLight.intensity, 0, lightReturnSpeed * Time.deltaTime);
+
     }
 
     bool ShouldFire()
@@ -48,6 +60,8 @@ public class WeaponManager : MonoBehaviour
         fireRateTimer = 0;
         barrelPos.LookAt(aim.aimPos);
         audioSource.PlayOneShot(gusShot);
+        TriggerMuzzleFlash();
+
         for (int i = 0; i < bulletsPerShot; i++)
         {
             Vector3 shotDirection = barrelPos.forward;
@@ -64,5 +78,20 @@ public class WeaponManager : MonoBehaviour
                
         }
 
+         
+    }
+
+    void TriggerMuzzleFlash()
+    {
+        if (muzzleflashParticles != null)
+        {
+            muzzleflashParticles.Play();
+        }
+
+
+
+        muzzleflashLight.intensity = lightIntensity;
+         
     }
 }
+
