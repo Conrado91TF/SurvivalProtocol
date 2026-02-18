@@ -70,6 +70,7 @@ public class MovementStateManager : MonoBehaviour
 
     private void GetDirection()
     {
+       
         hzInput = Input.GetAxis("Horizontal");
         vInput = Input.GetAxis("Vertical");
 

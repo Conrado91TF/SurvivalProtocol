@@ -22,6 +22,7 @@ public class WeaponManager : MonoBehaviour
     ParticleSystem muzzleflashParticles;
     float lightIntensity;
     [SerializeField] float lightReturnSpeed = 20;
+   
 
 
 
@@ -35,6 +36,7 @@ public class WeaponManager : MonoBehaviour
         muzzleflashLight.intensity = 0;
         muzzleflashParticles = GetComponentInChildren<ParticleSystem>();
         fireRateTimer = fireRate;
+        PoolManager.Instance.CreatePool(bullet, 10);
     }
 
     // Update is called once per frame

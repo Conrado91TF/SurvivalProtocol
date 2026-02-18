@@ -10,8 +10,15 @@ public class WalkState : MovementBaseState
 
     public override void UpdateState(MovementStateManager movement)
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift)) ExitState (movement, movement.Run);
-        else if (Input.GetKeyDown(KeyCode.C)) ExitState (movement, movement.Crouch);
+        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.Joystick1Button8))
+        { 
+           ExitState (movement, movement.Run);
+        } 
+        else if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.Joystick1Button1))
+        {
+           ExitState (movement, movement.Crouch);
+        }
+
         else if (movement.dir.magnitude < 0.1f) ExitState (movement, movement.Idle);
 
         if (movement.vInput < 0) movement.currentMoveSpeed = movement.walkBackSpeed;
