@@ -27,6 +27,9 @@ public class ChaseState : MonoBehaviour
         fsm.agent.isStopped = false;
         fsm.losePlayerTimer = 0f;
         pathUpdateTimer = 0f;
+
+        fsm.animator.SetBool("isWalking", true);
+        fsm.animator.SetBool("isAiming", false);
     }
 
     public void OnUpdate()

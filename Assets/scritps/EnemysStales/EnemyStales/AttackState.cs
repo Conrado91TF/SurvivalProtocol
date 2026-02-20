@@ -45,6 +45,9 @@ public class AttackState : MonoBehaviour
         fsm.agent.isStopped = true;   // detener movimiento
         fsm.agent.velocity = Vector3.zero;
         fireTimer = fireRate; // disparo inmediato al entrar
+
+        fsm.animator.SetBool("isWalking", false);
+        fsm.animator.SetBool("isAiming", true);
     }
 
     public void OnUpdate()
@@ -73,6 +76,8 @@ public class AttackState : MonoBehaviour
     public void OnExit()
     {
         fsm.agent.isStopped = false;
+
+        
     }
 
     // ─────────────────────────────────────────────

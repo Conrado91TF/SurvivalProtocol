@@ -41,6 +41,9 @@ public class PatrolState : MonoBehaviour
             SetDestinationToCurrentWaypoint();
         else
             Debug.LogWarning("[PatrolState] No hay waypoints asignados.");
+        
+        fsm.animator.SetBool("isWalking", true);
+        fsm.animator.SetBool("isAiming", false);
     }
 
     public void OnUpdate()
@@ -95,4 +98,8 @@ public class PatrolState : MonoBehaviour
     {
         currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
     }
+
+     
+   
+
 }
