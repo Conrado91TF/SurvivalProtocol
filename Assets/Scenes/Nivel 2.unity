@@ -309,7 +309,7 @@ MonoBehaviour:
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
-    FieldOfView: 59.99985
+    FieldOfView: 59.99989
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -1846,7 +1846,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyFSM
   currentState: 0
-  player: {fileID: 0}
+  player: {fileID: 246516230}
   visionRange: 15.1
   visionAngle: 120
   obstacleMask:
@@ -2347,7 +2347,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &246516225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2355,7 +2355,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 246516224}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be009de411d5c7d4bb4a4fb43e85a728, type: 3}
   m_Name: 
@@ -2416,6 +2416,7 @@ Transform:
   m_Children:
   - {fileID: 36980230}
   - {fileID: 543450652087665150}
+  - {fileID: 330585546}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &246516231
@@ -2425,7 +2426,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 246516224}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ffc645ea93ab4e4dbd0846bc716ef2d, type: 3}
   m_Name: 
@@ -2791,7 +2792,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 82.1
+  field of view: 59.99989
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -2817,12 +2818,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.07532338, y: -0.23340909, z: 0.01813824, w: 0.96928716}
-  m_LocalPosition: {x: -3.9489465, y: 3.4108257, z: -35.56132}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.273, y: 0.17999995, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 246516230}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
@@ -5553,7 +5554,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &850679234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7196,7 +7197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyFSM
   currentState: 0
-  player: {fileID: 0}
+  player: {fileID: 246516230}
   visionRange: 15.1
   visionAngle: 120
   obstacleMask:
@@ -10267,7 +10268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyFSM
   currentState: 0
-  player: {fileID: 0}
+  player: {fileID: 246516230}
   visionRange: 15.1
   visionAngle: 120
   obstacleMask:
@@ -10425,53 +10426,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1000012456564496, guid: 36b4cee33c5a95b4fa7f0ae6bdb49564, type: 3}
   m_PrefabInstance: {fileID: 1067352149}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1507194277
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1507194279}
-  - component: {fileID: 1507194278}
-  m_Layer: 0
-  m_Name: Cinematic
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1507194278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1507194277}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7f887bf146b554c847835c81d2bcda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Cinematic
-  playableDirector: {fileID: 1695014247}
-  nivel2: Nivel 2
---- !u!4 &1507194279
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1507194277}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.50892, y: 0.25182, z: -20.12556}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1695014245}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1510292313 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000011066351628, guid: 36b4cee33c5a95b4fa7f0ae6bdb49564, type: 3}
@@ -11013,37 +10967,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1332129342}
   m_SourcePrefab: {fileID: 100100000, guid: 36b4cee33c5a95b4fa7f0ae6bdb49564, type: 3}
---- !u!1 &1583391840
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1583391841}
-  m_Layer: 0
-  m_Name: cinematic
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1583391841
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1583391840}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.50893, y: 0.25182, z: -20.12555}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1599864207 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1000012456564496, guid: 36b4cee33c5a95b4fa7f0ae6bdb49564, type: 3}
@@ -11428,13 +11351,14 @@ GameObject:
   - component: {fileID: 1695014242}
   - component: {fileID: 1695014246}
   - component: {fileID: 1695014247}
+  - component: {fileID: 1695014248}
   m_Layer: 0
   m_Name: CinemachineCamera1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1695014242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11522,7 +11446,7 @@ MonoBehaviour:
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
-    FieldOfView: 82.1
+    FieldOfView: 36.5
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -11550,11 +11474,11 @@ Transform:
   m_GameObject: {fileID: 1695014241}
   serializedVersion: 2
   m_LocalRotation: {x: 0.07532337, y: -0.23340906, z: 0.018138232, w: 0.9692872}
-  m_LocalPosition: {x: -8.457867, y: 3.1590056, z: -15.4357605}
+  m_LocalPosition: {x: -3.9489465, y: 3.4108257, z: -35.56132}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 1507194279}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 359}
 --- !u!95 &1695014246
 Animator:
@@ -11588,7 +11512,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: a3f29b88fd0655d40be593520b031e2c, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
@@ -11603,6 +11527,20 @@ PlayableDirector:
     value: {fileID: 1695014246}
   m_ExposedReferences:
     m_References: []
+--- !u!114 &1695014248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695014241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa7f887bf146b554c847835c81d2bcda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Cinematic
+  playableDirector: {fileID: 1695014247}
+  nextSceneName: 
 --- !u!4 &1696079150 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000011066351628, guid: 36b4cee33c5a95b4fa7f0ae6bdb49564, type: 3}
@@ -12346,7 +12284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyFSM
   currentState: 0
-  player: {fileID: 0}
+  player: {fileID: 246516230}
   visionRange: 15.1
   visionAngle: 120
   obstacleMask:
@@ -14374,7 +14312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyFSM
   currentState: 0
-  player: {fileID: 0}
+  player: {fileID: 246516230}
   visionRange: 15.1
   visionAngle: 120
   obstacleMask:
@@ -18270,7 +18208,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 410087041}
-  - {fileID: 330585546}
   - {fileID: 832575519}
   - {fileID: 409296017}
   - {fileID: 125240859}
@@ -18289,7 +18226,6 @@ SceneRoots:
   - {fileID: 180718698}
   - {fileID: 1427737340}
   - {fileID: 811920077}
+  - {fileID: 1695014245}
   - {fileID: 1095484180}
   - {fileID: 1514993830}
-  - {fileID: 1583391841}
-  - {fileID: 1507194279}
