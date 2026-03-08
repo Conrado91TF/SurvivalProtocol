@@ -27,6 +27,10 @@ public class AttackState : MonoBehaviour
     [Tooltip("Velocidad de giro al encarar al jugador (grados/seg)")]
     public float rotationSpeed = 8f;
 
+    [Header("Proyectil")]
+    [Tooltip("Velocidad de la bala del enemigo")]
+    public float bulletVelocity = 30f;
+
     // ─────────────────────────────────────────────
     private EnemyFSM fsm;
     private float fireTimer;
@@ -104,27 +108,39 @@ public class AttackState : MonoBehaviour
     /// </summary>
     private void Shoot()
     {
+      Debug.Log("Shoot() llamado"); // 👈 añade esto
+
         if (firePoint == null)
         {
-            Debug.LogWarning("[AttackState] firePoint no asignado. Usando posición del enemigo.");
+            Debug.LogWarning("FirePoint no asignado");
+            return;
         }
 
-        Vector3 spawnPos = firePoint != null ? firePoint.position : transform.position + Vector3.up * 1.5f;
-        Quaternion spawnRot = firePoint != null ? firePoint.rotation : transform.rotation;
+        Debug.Log("FirePoint OK, instanciando bala"); // 👈 añade esto
 
-        // Instanciar proyectil
-        if (projectilePrefab != null)
-            Instantiate(projectilePrefab, spawnPos, spawnRot);
-        else
-            Debug.LogWarning("[AttackState] projectilePrefab no asignado.");
+        Vector3 targetPos = fsm.player.position + Vector3.up * 1f;
+        firePoint.LookAt(targetPos);
 
-        // Partícula (muzzle flash)
+        if (fireSound != null)
+            fsm.audioSource.PlayOneShot(fireSound, fireSoundVolume);
+
         if (muzzleFlash != null)
             muzzleFlash.Play();
 
-        // Sonido
-        if (fireSound != null)
-            fsm.audioSource.PlayOneShot(fireSound, fireSoundVolume);
+        if (projectilePrefab != null)
+        {
+            Debug.Log("Prefab OK, disparando"); // 👈 añade esto
+            GameObject currentBullet = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+            Rigidbody rb = currentBullet.GetComponent<Rigidbody>();
+            if (rb != null)
+                rb.AddForce(firePoint.forward * bulletVelocity, ForceMode.Impulse);
+        }
+        else
+        {
+            Debug.LogWarning("projectilePrefab no asignado en AttackState"); // 👈
+        }
     }
+
 }
+
 

@@ -33,6 +33,7 @@ public class EnemyHealth : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
+        Debug.Log("Vida inicializada: " + currentHealth);
     }
 
     // ── Llamado externamente (por bala, explosión, etc.) ──
@@ -40,6 +41,8 @@ public class EnemyHealth : MonoBehaviour
     {
         if (isDead) return;
 
+        Debug.Log("Daño recibido: " + amount + " | Vida actual: " + currentHealth);
+        
         currentHealth -= amount;
         currentHealth = Mathf.Max(currentHealth, 0f);
 

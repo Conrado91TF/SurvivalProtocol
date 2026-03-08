@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
 
     // Opcional: cachear Rigidbody si tu bala usa f�sica
     Rigidbody rb;
-
+    private bool hasHit = false;
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -17,6 +17,7 @@ public class Bullet : MonoBehaviour
     {
         // Reset del temporizador cada vez que se activa (pooling)
         timer = 0f;
+        hasHit = false;
 
         // Reset f�sico para evitar que conserve velocidad previa
         if (rb != null)
@@ -42,9 +43,24 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        // L�gica de impacto (efectos, da�o...) aqu�
+       if (hasHit) return;
+        hasHit = true;
 
-        // Devolver al pool en lugar de destruir
+        Debug.Log("BULLET golpeó: " + collision.gameObject.name +
+              " | Layer: " + collision.gameObject.layer);
+
+        EnemyHealth enemy = collision.gameObject.GetComponent<EnemyHealth>();
+        if (enemy != null)
+        {
+            enemy.TakeDamage(33.3f);
+        }
+
+        else
+        {
+            Debug.Log("NO encontró EnemyHealth en: " + collision.gameObject.name);
+        }
+
+
         if (PoolManager.Instance != null)
             PoolManager.Instance.ReturnToPool(this.gameObject);
         else
