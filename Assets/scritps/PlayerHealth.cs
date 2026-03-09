@@ -16,6 +16,13 @@ public class PlayerHealth : MonoBehaviour
     [Tooltip("Cuanto más alto más rápido baja la barra visualmente")]
     public float barSpeed = 3f;
 
+    private Animator animator;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     private void Start()
     {
         currentHealth = maxHealth;
@@ -60,9 +67,26 @@ public class PlayerHealth : MonoBehaviour
         isDead = true;
 
         Debug.Log("Jugador muerto");
+
+        // 1. Animación de muerte
+        if (animator != null)
+            animator.SetBool("isDead", true);
+
+        // 2. Desactivar Character Controller
+        CharacterController cc = GetComponent<CharacterController>();
+        if (cc != null) cc.enabled = false;
+
+        // 3. Desactivar movimiento
+        MovementStateManager movement = GetComponent<MovementStateManager>();
+        if (movement != null) movement.enabled = false;
+
+        StartCoroutine(ShowGameOverDelayed(2f));
+    }
+    private System.Collections.IEnumerator ShowGameOverDelayed(float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay);
+        if (GameManager.Instance != null)
+            GameManager.Instance.ShowGameOver();
     }
 
-    public float GetCurrentHealth() => currentHealth;
-    public float GetMaxHealth() => maxHealth;
-    public bool IsDead() => isDead;
 }

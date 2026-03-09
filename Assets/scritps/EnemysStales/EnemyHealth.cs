@@ -77,6 +77,9 @@ public class EnemyHealth : MonoBehaviour
         if (deathEffectPrefab != null)
             Instantiate(deathEffectPrefab, transform.position, Quaternion.identity);
 
+        if (GameManager.Instance != null)
+            GameManager.Instance.EnemyKilled();
+
         // 5. Destruir el GameObject tras un delay
         Destroy(gameObject, destroyDelay);
     }

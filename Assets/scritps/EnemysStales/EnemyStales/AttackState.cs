@@ -27,9 +27,9 @@ public class AttackState : MonoBehaviour
     [Tooltip("Velocidad de giro al encarar al jugador (grados/seg)")]
     public float rotationSpeed = 8f;
 
-    [Header("Proyectil")]
-    [Tooltip("Velocidad de la bala del enemigo")]
-    public float bulletVelocity = 30f;
+    [Header("Daño")]
+    public float damage = 10f;
+    public LayerMask playerMask;
 
     // ─────────────────────────────────────────────
     private EnemyFSM fsm;
@@ -56,6 +56,8 @@ public class AttackState : MonoBehaviour
 
     public void OnUpdate()
     {
+        Debug.Log("AttackState OnUpdate ejecutándose");
+
         if (fsm.player == null) return;
 
         // ─── Transición de vuelta a Persecución ───
@@ -73,6 +75,7 @@ public class AttackState : MonoBehaviour
         if (fireTimer <= 0f)
         {
             fireTimer = fireRate;
+            Debug.Log("Llamando a Shoot()");
             Shoot();
         }
     }
@@ -108,39 +111,43 @@ public class AttackState : MonoBehaviour
     /// </summary>
     private void Shoot()
     {
-      Debug.Log("Shoot() llamado"); // 👈 añade esto
+        Debug.Log("Shoot ejecutado, player: " + (fsm.player != null ? fsm.player.name : "NULL"));
 
-        if (firePoint == null)
-        {
-            Debug.LogWarning("FirePoint no asignado");
-            return;
-        }
+        if (fsm.player == null) return;
 
-        Debug.Log("FirePoint OK, instanciando bala"); // 👈 añade esto
-
-        Vector3 targetPos = fsm.player.position + Vector3.up * 1f;
-        firePoint.LookAt(targetPos);
-
+        // Sonido y partícula
         if (fireSound != null)
             fsm.audioSource.PlayOneShot(fireSound, fireSoundVolume);
-
         if (muzzleFlash != null)
             muzzleFlash.Play();
 
-        if (projectilePrefab != null)
-        {
-            Debug.Log("Prefab OK, disparando"); // 👈 añade esto
-            GameObject currentBullet = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-            Rigidbody rb = currentBullet.GetComponent<Rigidbody>();
-            if (rb != null)
-                rb.AddForce(firePoint.forward * bulletVelocity, ForceMode.Impulse);
-        }
-        else
-        {
-            Debug.LogWarning("projectilePrefab no asignado en AttackState"); // 👈
-        }
-    }
+        // Raycast directo al jugador
+        Vector3 origin = firePoint != null ? firePoint.position : transform.position + Vector3.up * 1.5f;
+        Vector3 direction = (fsm.player.position + Vector3.up * 1f - origin).normalized;
 
+        Debug.Log("Origin: " + origin + " | Direction: " + direction);
+
+        RaycastHit hit;
+        if (Physics.Raycast(origin, direction, out hit, 100f))
+            {
+            Debug.Log("Raycast golpeó: " + hit.collider.gameObject.name);
+
+            PlayerHealth player = hit.collider.GetComponentInParent<PlayerHealth>();
+            if (player != null)
+            {
+                player.TakeDamage(damage);
+                Debug.Log("Jugador recibió daño");
+            }
+        }
+        {
+            Debug.Log("Raycast no golpeó al jugador");
+        }
+    
+    
+    }
 }
+
+
+
 
 

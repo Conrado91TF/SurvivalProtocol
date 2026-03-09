@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 
 
@@ -34,21 +34,16 @@ public class EnemyBullet : MonoBehaviour
             Destroy(gameObject);
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("ENEMYBULLET golpeó: " + collision.gameObject.name +
-               " | Layer: " + collision.gameObject.layer);
+    private void OnTriggerEnter(Collider other)
+{
+    Debug.Log("ENEMYBULLET trigger con: " + other.gameObject.name);
 
-        PlayerHealth player = collision.gameObject.GetComponentInParent<PlayerHealth>();
-        if (player != null)
-        {
-            Debug.Log("ENCONTRÓ PlayerHealth, quitando vida");
-            player.TakeDamage(damage);
-        }
-        else
-        {
-            Debug.Log("NO encontró PlayerHealth en: " + collision.gameObject.name);
-        }
+    PlayerHealth player = other.gameObject.GetComponentInParent<PlayerHealth>();
+    if (player != null)
+    {
+        Debug.Log("ENCONTRÃ“ PlayerHealth, quitando vida");
+        player.TakeDamage(damage);
+    }
 
         Destroy(gameObject);
     }
