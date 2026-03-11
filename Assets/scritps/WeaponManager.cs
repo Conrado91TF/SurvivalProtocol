@@ -39,8 +39,11 @@ public class WeaponManager : MonoBehaviour
     float lightIntensity;
     [SerializeField] float lightReturnSpeed = 20;
 
+    private Animator Animator;
+
     void Start()
     {
+        Animator = GetComponentInParent<Animator>();
         audioSource = GetComponent<AudioSource>();
         aim = GetComponentInParent<AimStateManager>();
         muzzleflashLight = GetComponentInChildren<Light>();
@@ -91,6 +94,7 @@ public class WeaponManager : MonoBehaviour
         barrelPos.LookAt(aim.aimPos);
         audioSource.PlayOneShot(gusShot);
         TriggerMuzzleFlash();
+        currentAmmo = Mathf.Max(0, currentAmmo - 1); // restar munición por cada disparo 
 
         for (int i = 0; i < bulletsPerShot; i++)
         {
@@ -109,9 +113,10 @@ public class WeaponManager : MonoBehaviour
 
         UpdateAmmoUI();
 
-        // Recarga automática si se quedó sin balas
-        if (currentAmmo <= 0 && reserveAmmo > 0)
-            StartReload();
+        {
+            if (ammoText != null)
+                ammoText.text = currentAmmo + " / " + reserveAmmo;
+        }
     }
 
     void StartReload()
@@ -124,7 +129,11 @@ public class WeaponManager : MonoBehaviour
 
         // Mostrar RECARGANDO en la UI
         if (ammoText != null)
-            ammoText.text = "RECARGANDO...";
+            ammoText.text = "";
+
+        if (Animator != null)
+            Animator.SetTrigger("Reload");
+
     }
 
     void FinishReload()
