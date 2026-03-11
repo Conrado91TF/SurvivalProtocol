@@ -19,7 +19,7 @@ public class EnemyBullet : MonoBehaviour
     void OnEnable()
     {
         timer = 0f;
-
+        // Asegurarnos de que la bala no se vea afectada por la gravedad
         if (rb != null)
         {
             rb.useGravity = false;
@@ -33,15 +33,15 @@ public class EnemyBullet : MonoBehaviour
         if (timer >= timeToDestroy)
             Destroy(gameObject);
     }
-
+    // El movimiento se maneja desde el EnemyWeapon, así que aquí no hacemos nada
     private void OnTriggerEnter(Collider other)
 {
     Debug.Log("ENEMYBULLET trigger con: " + other.gameObject.name);
 
     PlayerHealth player = other.gameObject.GetComponentInParent<PlayerHealth>();
     if (player != null)
-    {
-        Debug.Log("ENCONTRÓ PlayerHealth, quitando vida");
+        {    // Si encontramos PlayerHealth, aplicamos daño
+            Debug.Log("ENCONTRÓ PlayerHealth, quitando vida");
         player.TakeDamage(damage);
     }
 

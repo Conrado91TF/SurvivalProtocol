@@ -89,4 +89,8 @@ public class PlayerHealth : MonoBehaviour
             GameManager.Instance.ShowGameOver();
     }
 
+    public float GetCurrentHealth() => currentHealth;
+    public float GetMaxHealth() => maxHealth;
+
 }
+

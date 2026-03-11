@@ -40,7 +40,7 @@ public class PoolManager : MonoBehaviour
         }
         pools.Add(prefab, q);
     }
-
+    // Sobrecarga para posición y rotación por defecto
     public GameObject Spawn(GameObject prefab, Vector3 position, Quaternion rotation)
     {
         if (prefab == null) return null;

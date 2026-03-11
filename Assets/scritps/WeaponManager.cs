@@ -161,4 +161,11 @@ public class WeaponManager : MonoBehaviour
 
         muzzleflashLight.intensity = lightIntensity;
     }
+
+    public void AddAmmo(int amount)
+    {
+        reserveAmmo = Mathf.Min(reserveAmmo + amount, maxReserveAmmo);
+        UpdateAmmoUI();
+    }
+
 }
