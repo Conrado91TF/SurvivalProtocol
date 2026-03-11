@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
         Cursor.visible = false;
     }
 
-    // ── Llamado desde EnemyHealth cuando muere un enemigo ──
+    // Llamado desde EnemyHealth cuando muere un enemigo ──
     public void EnemyKilled()
     {
         if (gameEnded) return;
@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
             ShowVictory();
     }
 
-    // ── Llamado desde PlayerHealth cuando muere el jugador ──
+    // Llamado desde PlayerHealth cuando muere el jugador ──
     public void ShowGameOver()
     {
         if (gameEnded) return;

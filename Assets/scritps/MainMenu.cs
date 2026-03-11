@@ -8,35 +8,23 @@ public class MainMenu : MonoBehaviour
     public GameObject mainMenu;
 
     [Header("Música")]
-    public AudioSource musicSource;  // arrastra el AudioSource aquí
-    public Slider volumeSlider;      // arrastra tu barra de volumen aquí
-
+    
+    public Slider volumeSlider;      
 
     private void Start()
     {
-        // Cargar volumen guardado o poner 1 por defecto
-        float savedVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
-        if (musicSource != null)
-        {
-            musicSource.volume = savedVolume;
-            musicSource.loop = true;
-            musicSource.Play();
-        }
-
         if (volumeSlider != null)
         {
-            volumeSlider.value = savedVolume;
+            // Cargar volumen guardado
+            volumeSlider.value = PlayerPrefs.GetFloat("MusicVolume", 1f);
             volumeSlider.onValueChanged.AddListener(OnVolumeChanged);
         }
     }
 
     public void OnVolumeChanged(float value)
     {
-        if (musicSource != null)
-            musicSource.volume = value;
-
-        // Guardar el volumen para que se recuerde
-        PlayerPrefs.SetFloat("MusicVolume", value);
+        if (MusicManager.Instance != null)
+            MusicManager.Instance.SetVolume(value);
     }
 
 
@@ -44,6 +32,10 @@ public class MainMenu : MonoBehaviour
     {
         optionsMenu.SetActive(true);
         mainMenu.SetActive(false);
+
+        //Sincronizar el slider con el volumen actual
+        if (volumeSlider != null && MusicManager.Instance != null)
+            volumeSlider.value = MusicManager.Instance.GetVolume();
     }
 
     public void OpenMainMenuPanel()
